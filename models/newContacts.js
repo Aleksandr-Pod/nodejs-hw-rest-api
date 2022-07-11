@@ -14,7 +14,10 @@ const contactSchema = Schema ({
     favorite: {
       type: Boolean,
       default: false,
-    },
+  },
+  owner: {
+      type:String
+    }
   }, {versionKey: false, timestamps:true})
 
 const Contact = model('contact', contactSchema)
