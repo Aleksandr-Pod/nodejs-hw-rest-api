@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose')
 
 const userSchema = Schema({
-    password: {
+  password: {
     type: String,
     required: [true, 'Password is required'],
   },
