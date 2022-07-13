@@ -3,14 +3,17 @@ const { Conflict } = require('http-errors')
 const bcrypt = require('bcryptjs')
 const Joi = require('joi')
 const createError = require('../../helpers/error')
+const gravatar = require('gravatar')
 
 const joiSchema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().required(),
-    password: Joi.string().min(4).required()
+    password: Joi.string().min(4).required(),
+    avatar: Joi.string().required()
 })
 const register = async (req, res, next) => {
-    const {email, password} = req.body
+    const { email, password } = req.body
+    req.body.avatar = gravatar.url(email)
     try {
         const {error} = joiSchema.validate(req.body)
         if (error) { throw createError(400, error.message) }
