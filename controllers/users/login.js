@@ -12,7 +12,6 @@ const login = async (req, res, next) => {
         }
         const passCheck = bcrypt.compareSync(password, user.password)
         if (!passCheck) { throw new Conflict('pass is incorrect') }
-        // const { SECRET_KEY } = process.env
         const payload = { id: user._id }
         const token = jwt.sign(payload, process.env.SECRET_KEY)
         await User.findByIdAndUpdate(user._id, {token})
