@@ -5,6 +5,7 @@ const auth = require('../../middlewares/auth')
 const upload = require('../../middlewares/upload')
 
 router.post('/signup', ctrl.register)
+router.get('/verify/:verificationToken', ctrl.verify)
 router.post('/login', ctrl.login)
 router.get('/logout', auth, ctrl.logout)
 router.get('/current', auth, ctrl.getCurrent)
