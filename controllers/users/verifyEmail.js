@@ -3,9 +3,7 @@ const createError = require('../../helpers/error')
 
 const verify = async (req, res, next) => {
     const { verificationToken } = req.params
-    console.log("verificationToken:", verificationToken)
     const user = await User.findOne({ verificationToken })
-
     try {
         if (!user) { createError(404) }
         await User.findByIdAndUpdate(user._id, { verificationToken: null, verified: true })
